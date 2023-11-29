@@ -5,8 +5,8 @@ ENV ENVIRONMENT=development
 RUN yarn set version berry
 WORKDIR /app
 
-COPY nodemon.json tsconfig.json package.json yarn.lock ./
-RUN yarn install
+COPY nodemon.json tsconfig.json package.json yarn.lock swagger.ts ./
 
+RUN yarn install
 
 CMD ["yarn", "dev"]

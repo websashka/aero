@@ -11,22 +11,19 @@ Test task for ERP.AERO
 
 
 ```sh
+# set node version
+$ nvm use
 # installation of the dependencies
 $ yarn install
-
+# generate swagger documentation
+$ yarn swagger
 ```
 
 ## Step 2.2: Scripts - local development
 
 ```sh
-# start the database where the server component will connect to
-$ 
-
-# initialize the database
-$ 
-
-# start the server component
-$ 
+# start server
+$ yarn dev
 ```
 
 ## Step 2.2: Scripts - container based development

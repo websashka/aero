@@ -7,6 +7,7 @@ import storageRouter from "./routes/storage";
 import { error } from "./middlewares/error";
 import { config } from "./config";
 import * as fs from "fs";
+import * as path from "path";
 
 const app = express();
 app.use(express.json());
@@ -14,7 +15,12 @@ app.use(error);
 app.use(authRouter);
 app.use(storageRouter);
 
-const doc = JSON.parse(fs.readFileSync("./swagger-output.json", "utf8"));
+const doc = JSON.parse(
+  fs.readFileSync(
+    path.resolve(path.join(__dirname, "../swagger-output.json")),
+    "utf8",
+  ),
+);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(doc));
 app.get("/hc", (req, res) => {
   res.send("ok");

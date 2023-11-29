@@ -14,4 +14,5 @@ dist/
 .env
 
 node_modules/
-src/swagger-output.json
+
+swagger-output.json

@@ -9,8 +9,6 @@ const doc = {
 };
 
 const outputFile = "./swagger-output.json";
-const routes = ["./routes/auth.ts", "./routes/storage.ts"];
+const routes = ["src/routes/auth.ts", "src/routes/storage.ts"];
 
-swaggerAutogen()(outputFile, routes, doc).then(async () => {
-  await import("./index");
-});
+swaggerAutogen()(outputFile, routes, doc);
