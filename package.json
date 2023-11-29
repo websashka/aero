@@ -9,10 +9,9 @@
     "lint": "eslint  \"src/**/*.ts\"",
     "lint:fix": "eslint --fix \"src/**/*.ts\"",
     "prepare": "husky install",
-    "typeorm:generate": "typeorm migration:generate -d src/data-source.ts ./src/migrations",
-    "typeorm:migrate": "typeorm-ts migration:run -d src/data-source.ts",
-    "typeorm:revert": "typeorm-ts migration:revert -d src/data-source.ts",
-    "typeorm:drop": "typeorm-ts schema:drop -d src/data-source.ts"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "typeorm:generate": "yarn typeorm migration:generate",
+    "typeorm:create": "typeorm migration:create"
   },
   "devDependencies": {
     "@types/bcrypt": "^5",

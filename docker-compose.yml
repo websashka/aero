@@ -14,14 +14,14 @@ services:
     ports:
       - '3306:3306'
 
-  api:
-    build:
-      dockerfile: Dockerfile.development
-    ports:
-      - '8000:8000'
-    env_file:
-      - ./.env
-    volumes:
-      - ./src:/app/src
+#  api:
+#    build:
+#      dockerfile: Dockerfile.development
+#    ports:
+#      - '8000:8000'
+#    env_file:
+#      - ./.env
+#    volumes:
+#      - ./src:/app/src
 volumes:
   my-db:
