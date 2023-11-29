@@ -108,5 +108,6 @@
   },
   "ts-node": {
     "files": true
-  }
+  },
+  "exclude": ["swagger.ts"]
 }
