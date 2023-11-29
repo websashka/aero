@@ -148,7 +148,9 @@ class StorageController {
     }
 
     if (file.user.id !== req.user.id) {
-      return res.status(401);
+      return res.status(401).json({
+        message: "Access denied.",
+      });
     }
 
     const body = await StorageService.get(file.key);
