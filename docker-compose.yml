@@ -5,6 +5,10 @@ services:
     restart: always
     env_file:
       - .env
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 5s
+      retries: 10
     volumes:
       - my-db:/var/lib/mysql
     ports:
@@ -15,6 +19,8 @@ services:
       dockerfile: Dockerfile.development
     ports:
       - '8000:8000'
+    env_file:
+      - ./.env
     volumes:
       - ./src:/app/src
 volumes:

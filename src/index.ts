@@ -13,6 +13,10 @@ app.use(error);
 app.use(authRouter);
 app.use(storageRouter);
 
+app.get("/hc", (req, res) => {
+  res.send("ok");
+});
+
 AppDataSource.initialize()
   .then(async () => {
     app.listen(config.PORT, () => {

@@ -1,47 +1,28 @@
-FROM node:20.9.0 AS base
-
+# builder
+FROM node:20.9.0 as builder
 WORKDIR /app
-COPY package*.json ./
+
+
+COPY tsconfig.json package.json yarn.lock ./
+COPY ./src ./src
 
 RUN yarn set version berry
-RUN yarn
-
-COPY . .
-
+RUN yarn install
 RUN yarn build
 
+# main
+FROM node:20.9.0-slim
 
-FROM node:20.9.0-slim AS production
-
-ARG user=amplication
-ARG group=${user}
-ARG uid=1001
-ARG gid=$uid
-
+ENV ENVIRONMENT=production
 
 
 WORKDIR /app
 
 
-RUN groupadd --gid ${gid} ${user}
-RUN useradd --uid ${uid} --gid ${gid} -m ${user}
+COPY package*.json yarn.lock ./
 
-COPY --from=base /app/node_modules/ ./node_modules
-COPY --from=base /app/package.json ./package.json
-COPY --from=base /app/dist ./dist
-COPY --from=base /app/prisma ./prisma
-COPY --from=base /app/scripts ./scripts
-COPY --from=base /app/src ./src
-COPY --from=base /app/tsconfig* ./
+RUN  yarn install --production
 
-RUN chown -R ${uid}:${gid} /app/
+COPY --from=builder /app/dist ./dist
 
-RUN yarn set version berry
-RUN yarn install --production
-
-USER ${user}
-
-ENV PORT=3000
-EXPOSE ${PORT}
-
-CMD [ "node", "./dist/main.js" ]
+CMD ["yarn", "start"]
