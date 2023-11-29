@@ -13,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: config.MYSQL_DATABASE,
   synchronize: false,
   migrationsRun: true,
-  logging: process.env.NODE_ENV === "development",
+  logging: true,
   entities: [User, File],
   migrations: ["src/migrations/*.ts"],
   subscribers: [],
