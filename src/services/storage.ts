@@ -26,7 +26,6 @@ class StorageService {
       Body: file.buffer,
       Key: key,
       ContentType: file.mimetype,
-      ContentDisposition: `attachment; filename="${encodeURI(file.name)}"`,
     });
     return {
       key,

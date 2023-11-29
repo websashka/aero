@@ -4,6 +4,10 @@ import { File } from "./entities/File";
 import { config } from "./config";
 import process from "node:process";
 
+const migrationPath =
+  process.env.NODE_ENV === "production"
+    ? "dist/migrations/*.js"
+    : "src/migrations/*.ts";
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: config.MYSQL_HOST,
@@ -15,6 +19,6 @@ export const AppDataSource = new DataSource({
   migrationsRun: true,
   logging: true,
   entities: [User, File],
-  migrations: ["src/migrations/*.ts", "dist/migrations/*.js"],
+  migrations: [migrationPath],
   subscribers: [],
 });

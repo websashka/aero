@@ -75,6 +75,23 @@ class StorageController {
       });
     }
     const fileRepository = AppDataSource.getRepository(File);
+    const file = await fileRepository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!file) {
+      return res.status(404).json({
+        message: "File not found.",
+      });
+    }
+
+    if (file.user.id !== req.user.id) {
+      return res.status(401);
+    }
+    await StorageService.delete(file.key);
+
     await fileRepository.delete(id);
     return res.json({
       id,
@@ -145,7 +162,37 @@ class StorageController {
   }
 
   async updateFile(req: Request, res: Response) {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({
+        message: "Id required.",
+      });
+    }
+
     const fileRepository = AppDataSource.getRepository(File);
+    const file = await fileRepository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!file) {
+      return res.status(404).json({
+        message: "File not found.",
+      });
+    }
+
+    if (file.user.id !== req.user.id) {
+      return res.status(401);
+    }
+
+    const { name } = req.body;
+
+    if (name) {
+      file.name = name;
+    }
+
+    return res.json({ file });
   }
 }
 
