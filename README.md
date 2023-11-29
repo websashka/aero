@@ -5,7 +5,9 @@ Test task for ERP.AERO
 # Getting started
 
 ## Step 1: Configuration
-
+```
+# copy .env.example to .env
+```
 
 ## Step 2.1: Scripts - pre-requisites
 
