@@ -13,4 +13,8 @@ export const config = {
   REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET,
   ACCESS_TOKEN_EXP_IN: process.env.ACCESS_TOKEN_EXP_IN,
   REFRESH_TOKEN_EXP_IN: process.env.REFRESH_TOKEN_EXP_IN,
+  AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+  S3_REGION: process.env.S3_REGION,
+  S3_BUCKET: process.env.S3_BUCKET,
 };

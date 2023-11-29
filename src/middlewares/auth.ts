@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { JsonWebTokenError, JwtPayload } from "jsonwebtoken";
 import { AppDataSource } from "../data-source";
-import { User } from "../entity/User";
+import { User } from "../entities/User";
 import JWTService from "../services/jwt";
 
 export const authentification = async (

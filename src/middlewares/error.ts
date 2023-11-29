@@ -1,6 +1,11 @@
-import { Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
-export const error = (error: Error, res: Response) => {
+export const error = (
+  error: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   console.error(`Error: ${error.message}`);
   return res.status(500).json({ message: "Internal server error" });
 };

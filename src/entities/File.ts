@@ -7,8 +7,8 @@ import {
 
 @Entity({ name: "files" })
 export class File {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column({ nullable: false })
   name: string;
@@ -18,6 +18,9 @@ export class File {
 
   @Column({ nullable: false })
   size: number;
+
+  @Column({ nullable: false })
+  key: string;
 
   @CreateDateColumn()
   createdAt: Date;

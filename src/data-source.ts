@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
-import { User } from "./entity/User";
-import { File } from "./entity/File";
+import { User } from "./entities/User";
+import { File } from "./entities/File";
 import { config } from "./config";
 import process from "node:process";
 

@@ -13,6 +13,8 @@ declare global {
       REFRESH_TOKEN_SECRET: string;
       ACCESS_TOKEN_EXP_IN: string;
       REFRESH_TOKEN_EXP_IN: string;
+      AWS_ACCESS_KEY_ID: string;
+      AWS_SECRET_ACCESS_KEY: string;
     }
   }
 
