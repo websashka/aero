@@ -1,11 +1,12 @@
 import swaggerAutogen from "swagger-autogen";
+import process from "node:process";
 
 const doc = {
   info: {
     title: "AERO API",
     description: "AERO test",
   },
-  host: "localhost:8000",
+  host: process.env.DOMAIN || "localhost:8000",
 };
 
 const outputFile = "./swagger-output.json";
