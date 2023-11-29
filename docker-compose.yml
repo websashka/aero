@@ -1,0 +1,21 @@
+services:
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - my-db:/var/lib/mysql
+    ports:
+      - '3306:3306'
+
+  api:
+    build:
+      dockerfile: Dockerfile.development
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./src:/app/src
+volumes:
+  my-db:

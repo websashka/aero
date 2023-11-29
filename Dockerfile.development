@@ -1,0 +1,12 @@
+FROM node:20.9.0
+
+ENV ENVIRONMENT=development
+
+RUN yarn set version berry
+WORKDIR /app
+
+COPY nodemon.json tsconfig.json package.json yarn.lock ./
+RUN yarn install
+
+
+CMD ["yarn", "dev"]
