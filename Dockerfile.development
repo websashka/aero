@@ -1,6 +1,6 @@
 FROM node:20.9.0
 
-ENV ENVIRONMENT=development
+ENV NODE_ENV=development
 
 RUN yarn set version berry
 WORKDIR /app

@@ -13,11 +13,8 @@ RUN yarn build
 # main
 FROM node:20.9.0-slim
 
-ARG DOMAIN
-ENV ENVIRONMENT=production
-ENV DOMAIN=$DOMAIN
-
 WORKDIR /app
+ENV NODE_ENV=production
 
 COPY package*.json yarn.lock ./
 
