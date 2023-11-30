@@ -7,10 +7,21 @@ import { User } from "../entities/User";
 
 class StorageController {
   async uploadFile(req: Request, res: Response) {
-    /* #swagger.parameters['file'] = {
-         in: "formData",
-         type: "file",
-         name: "file"
+    /* #swagger.requestBody = {
+         required: true,
+         content: {
+            "multipart/form-data": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    file: {
+                      "format": "binary",
+                      "type": "string"
+                    }
+                  }
+                }
+             }
+         }
       } */
 
     if (!req.file) {
@@ -85,6 +96,9 @@ class StorageController {
       where: {
         id,
       },
+      relations: {
+        user: true,
+      },
     });
 
     if (!file) {
@@ -117,6 +131,9 @@ class StorageController {
       where: {
         id,
       },
+      relations: {
+        user: true,
+      },
     });
 
     if (!file) {
@@ -125,8 +142,10 @@ class StorageController {
       });
     }
 
-    if (file.user.id !== req.user.id) {
-      return res.status(401);
+    if (file.user.id !== req.user?.id) {
+      return res.status(401).json({
+        message: "Access denied.",
+      });
     }
 
     return res.status(200).json({ file });
@@ -144,6 +163,9 @@ class StorageController {
     const file = await fileRepository.findOne({
       where: {
         id,
+      },
+      relations: {
+        user: true,
       },
     });
 
@@ -181,6 +203,9 @@ class StorageController {
     const file = await fileRepository.findOne({
       where: {
         id,
+      },
+      relations: {
+        user: true,
       },
     });
 

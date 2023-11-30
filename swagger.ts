@@ -15,6 +15,15 @@ const doc = {
       description: "",
     },
   ],
+  security: [{ bearerAuth: [] }],
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: "http",
+        scheme: "bearer",
+      },
+    },
+  },
 };
 
 const outputFile = "./swagger-output.json";
