@@ -1,16 +1,23 @@
 import swaggerAutogen from "swagger-autogen";
-// Todo
-const host = "uppity-island-production.up.railway.app";
+
 const doc = {
   info: {
     title: "AERO API",
     description: "AERO test",
   },
-  host,
-  schemes: ["https"],
+  servers: [
+    {
+      url: "http://localhost:8000",
+      description: "",
+    },
+    {
+      url: "https://uppity-island-production.up.railway.app",
+      description: "",
+    },
+  ],
 };
 
 const outputFile = "./swagger-output.json";
 const routes = ["src/routes/auth.ts", "src/routes/storage.ts"];
 
-swaggerAutogen()(outputFile, routes, doc);
+swaggerAutogen({ openapi: "3.0.0" })(outputFile, routes, doc);
