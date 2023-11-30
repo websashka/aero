@@ -19,7 +19,6 @@ ENV DOMAIN=$DOMAIN
 
 WORKDIR /app
 
-
 COPY package*.json yarn.lock ./
 
 RUN  yarn install --production
