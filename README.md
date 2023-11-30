@@ -1,7 +1,5 @@
 # Introduction
 
-Test task for ERP.AERO
-
 # Getting started
 
 ## Step 1: Configuration
