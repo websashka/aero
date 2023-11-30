@@ -18,7 +18,7 @@ $ nvm use
 # installation of the dependencies
 $ yarn install
 # generate swagger documentation
-$ yarn swagger
+$ yarn swagger:gen
 ```
 
 ## Step 2.2: Scripts - local development
