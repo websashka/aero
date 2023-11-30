@@ -7,6 +7,12 @@ import { User } from "../entities/User";
 
 class StorageController {
   async uploadFile(req: Request, res: Response) {
+    /* #swagger.parameters['file'] = {
+         in: "formData",
+         type: "file",
+         name: "file"
+      } */
+
     if (!req.file) {
       return res.status(400).json({
         message: "File not found.",
