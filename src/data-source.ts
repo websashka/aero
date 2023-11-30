@@ -10,11 +10,11 @@ const migrationPath =
     : "src/migrations/*.ts";
 export const AppDataSource = new DataSource({
   type: "mysql",
-  host: config.MYSQL_HOST,
-  port: config.MYSQL_PORT,
-  username: config.MYSQL_USER,
-  password: config.MYSQL_PASSWORD,
-  database: config.MYSQL_DATABASE,
+  host: "monorail.proxy.rlwy.net",
+  port: 59926,
+  username: "railway",
+  password: "kCxfK5eeTgaQ5A0a6RcGX!v*ZDyWOl0D",
+  database: "railway",
   synchronize: false,
   migrationsRun: true,
   logging: true,

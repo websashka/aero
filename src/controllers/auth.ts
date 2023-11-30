@@ -65,10 +65,23 @@ class AuthController {
   }
 
   async signup(req: Request, res: Response) {
+    const userRepository = AppDataSource.getRepository(User);
     const { login, password } = req.body;
 
     if (!login || !password) {
       return res.status(500).json({ message: "Login and password required." });
+    }
+
+    const existedUser = await userRepository.findOne({
+      where: {
+        login,
+      },
+    });
+
+    if (existedUser) {
+      return res.status(400).json({
+        message: "User with this login already exist.",
+      });
     }
 
     const encryptedPassword = bcrypt.hashSync(password, 12);
@@ -77,7 +90,6 @@ class AuthController {
     user.password = encryptedPassword;
     user.sessionKey = await bcrypt.genSalt(6);
 
-    const userRepository = AppDataSource.getRepository(User);
     await userRepository.save(user);
 
     const accessToken = JWTService.signAccessToken(
